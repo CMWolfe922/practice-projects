@@ -10,9 +10,19 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 class CustomAccountManager(BaseUserManager):
 
     # Method for what happens when a new user is created
-    def create_user(self):
+    def create_user(self, email, user_name, first_name, password, **other_fields):
+        """
+        The params are for what will be required. Examples: enail, user_name, password,
+        first_name, password, **other_fields
+        """
+        email = self.normalize_email(email)
+        user = self.model(email=email, user_name=user_name,
+                          first_name=first_name, **other_fields)
 
-        pass
+        # now create a way to set password
+        user.set_password(password)
+        user.save()
+        return user
 
 # Now I have to inherit AbstractBaseUser into my NewUser model
 class NewUser(AbstractBaseUser, PermissionMixin):

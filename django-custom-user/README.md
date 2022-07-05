@@ -17,6 +17,8 @@
 
     1.1.2) `user001` --> First user branch. This is the first changes to the user app.
 
+    1.1.3) `user002` --> Second user branch. This will handle the Account Manager.
+
 ## PROCESS OF BUILDING THE NEW USER MODEL:
 ---
 - step 1: Build the custom User model (One that uses the extended fields/email as username)

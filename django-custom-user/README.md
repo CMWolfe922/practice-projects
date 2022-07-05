@@ -15,6 +15,8 @@
 
 1.1.1) `dcu-main ` --> Now this will be used to make it easier to keep track of the "master branch" for django-custom-user. each merge will go to this branch first and then if everything checks out. It will then be merged with the abover branch.
 
+    1.1.2) `user001` --> First user branch. This is the first changes to the user app.
+
 ## PROCESS OF BUILDING THE NEW USER MODEL:
 ---
 - step 1: Build the custom User model (One that uses the extended fields/email as username)

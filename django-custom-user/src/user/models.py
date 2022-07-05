@@ -6,6 +6,14 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionMixin
 
 
+# Create the CustomAccountManager class
+class CustomAccountManager(BaseUserManager):
+
+    # Method for what happens when a new user is created
+    def create_user(self):
+
+        pass
+
 # Now I have to inherit AbstractBaseUser into my NewUser model
 class NewUser(AbstractBaseUser, PermissionMixin):
 

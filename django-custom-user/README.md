@@ -13,6 +13,8 @@
 
 1.1) `django-custom-user001` --> This is like the master branch but just for the djagno custom user project. 001 signifies version 1.
 
+1.2) `django-custom-user002` --> this is the master branch for the django custom user project version 2. Everything up to this point works and has been pushed to the cloud
+
 1.1.1) `dcu-main ` --> Now this will be used to make it easier to keep track of the "master branch" for django-custom-user. each merge will go to this branch first and then if everything checks out. It will then be merged with the abover branch.
 
     1.1.2) `user001` --> First user branch. This is the first changes to the user app.

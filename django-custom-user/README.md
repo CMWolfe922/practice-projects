@@ -134,7 +134,7 @@ class NewUser():
 * REQUIRED_FIELDS --> This is a list of fields that will be used/prompted whenever a new superuser is created.
 
 
-### Using the `PermissionMixin`
+### Using the `PermissionsMixin`
 
 ---
 
@@ -203,7 +203,7 @@ from django.utils import timezone
 # This helps with translating strings into other languages around the world
 from django.utils.translation import gettext_lazy as _
 # importing the AbstractBaseUser and BaseUserManager
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 
 # Create the CustomAccountManager class
@@ -248,7 +248,7 @@ class CustomAccountManager(BaseUserManager):
 
 
 # Now I have to inherit AbstractBaseUser into my NewUser model
-class NewUser(AbstractBaseUser, PermissionMixin):
+class NewUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(_('email address'), unique=True)
     user_name = models.CharField(max_length=150, unique=True)
@@ -264,6 +264,7 @@ class NewUser(AbstractBaseUser, PermissionMixin):
 
     # setting the first parameter
     USERNAME_FIELD = 'email'
+    # I need to add the first_name and user_name fields here
     REQUIRED_FIELDS = ['user_name']
 
     # Now create a dunder method for __str__ to print the new users username
@@ -275,3 +276,10 @@ class NewUser(AbstractBaseUser, PermissionMixin):
 ===
 
 Now that the models file is setup. I will have to make changes to the projects `settings.py` file:
+
+> in the `settings.py` file I added the following changes:
+> `AUTH_USER_MODEL = 'user.NewUser'`
+
+- I also added the `'user'` app to the app list.
+
+===

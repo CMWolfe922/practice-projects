@@ -15,6 +15,10 @@ class CustomAccountManager(BaseUserManager):
         The params are for what will be required. Examples: enail, user_name, password,
         first_name, password, **other_fields
         """
+        # Adding a validation check for the user's email
+        if not email:
+            raise ValueError(_("You must provide and email address"))
+
         email = self.normalize_email(email)
         user = self.model(email=email, user_name=user_name,
                           first_name=first_name, **other_fields)
@@ -23,6 +27,25 @@ class CustomAccountManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+
+    def create_superuser(self, email, user_name, first_name, password, **other_fields):
+
+        # When creating the superuser we will utilize the **other_fields parameter
+        # to set the is_staff and is_superuser to True
+        other_fields.setdefault('is_staff', True)
+        other_fields.setdefault('is_superuser', True)
+        other_fields.setdefault('is_active', True)
+
+        # These validations can be used in Testing
+        if other_fields.get('is_staff') is not True:
+            raise ValueError(
+                'Superuser must be assigned to is_staff=True.'
+            )
+        if other_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must be assigned to is_superuser=True')
+
+        return self.create_user(email, user_name, first_name, password, **other_fields)
+
 
 # Now I have to inherit AbstractBaseUser into my NewUser model
 class NewUser(AbstractBaseUser, PermissionMixin):
@@ -36,6 +59,8 @@ class NewUser(AbstractBaseUser, PermissionMixin):
     is_staff = models.BooleanField(_('is user staff'), default=False)
     is_active = models.BooleanField(_('is user active'), default=False)
 
+    # setting up the CustomAccountManager
+    objects = CustomAccountManager()
 
     # setting the first parameter
     USERNAME_FIELD = 'email'

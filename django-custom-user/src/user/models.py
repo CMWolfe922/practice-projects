@@ -3,8 +3,8 @@ from django.utils import timezone
 # This helps with translating strings into other languages around the world
 from django.utils.translation import gettext_lazy as _
 # importing the AbstractBaseUser and BaseUserManager
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionMixin
-
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+# from django.contrib.auth.mixins import PermissionMixin
 
 # Create the CustomAccountManager class
 class CustomAccountManager(BaseUserManager):
@@ -47,7 +47,7 @@ class CustomAccountManager(BaseUserManager):
 
 
 # Now I have to inherit AbstractBaseUser into my NewUser model
-class NewUser(AbstractBaseUser, PermissionMixin):
+class NewUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(_('email address'), unique=True)
     user_name = models.CharField(max_length=150, unique=True)

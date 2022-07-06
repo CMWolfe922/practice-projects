@@ -29,7 +29,6 @@ class CustomAccountManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, user_name, first_name, password, **other_fields):
-
         # When creating the superuser we will utilize the **other_fields parameter
         # to set the is_staff and is_superuser to True
         other_fields.setdefault('is_staff', True)

@@ -8,6 +8,8 @@ from .models import NewUser
 
 
 class UserAdminConfig(UserAdmin):
+    # import the model
+    model = NewUser
     # create a search facility by adding search fields
     search_fields = ('email', 'user_name', 'first_name',)
     # Then we can add a way to filter by staff active, firstname, etc..
@@ -15,6 +17,21 @@ class UserAdminConfig(UserAdmin):
     ordering = ('-start_date',)
     # create a list display as well:
     list_display = ('email', 'user_name', 'first_name', 'is_active', 'is_staff',)
-
+    # Create a fieldset that will be broken up into sections:
+    fieldsets = (
+        (None, {'fields': ('email', 'user_name', 'first_name',)}),
+        ('Permission', {'fields': ('is_staff', 'is_active')}),
+        ('Personal', {'fields': ('about',)}),
+    )
+    # Now use the formfield_override for thr textareas
+    formfield_overrides = {
+        NewUser.about: {'widget': Textarea(attrs={'rows': 10, 'cols': 40})},
+    }
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'user_name', 'first_name', 'password1', 'password2', 'is_active', 'is_staff',)
+        })
+    )
 
 admin.site.register(NewUser)

@@ -26,7 +26,7 @@
 
 1.2.1) `dcu-main2` --> This is the slave branch for the `django-custom-user002` that will be used to create more slave branches under. This will be where I start building out the rest of the user app.
 
-    1.2.2) `user-v2.1.1` --> this will be the slave branch that has the first changes to the second version of the user app.
+    1.2.2) `user-v2.1` --> this will be the slave branch that has the first changes to the second version of the user app. This will be updating the `admin.py` file.
 
 ## PROCESS OF BUILDING THE NEW USER MODEL:
 ---
@@ -289,3 +289,14 @@ Now that the models file is setup. I will have to make changes to the projects `
 - I also added the `'user'` app to the app list.
 
 ===
+
+#### Updating the `admin.py` file
+---
+
+```python
+from django.contrib import admin
+from .models import NewUser
+admin.site.register(NewUser)
+```
+
+> that is what needs to be done with each model that you want to be able to control from the admin page in the server.

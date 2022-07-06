@@ -314,4 +314,10 @@ class UserAdminConfig(UserAdmin):
     ordering = ('-start_date',)
     # create a list display as well:
     list_display = ('email', 'user_name', 'first_name', 'is_active', 'is_staff',)
+    # Create a fieldset that will be broken up into sections:
+    fieldsets = (
+        (None, {'fields': ('email', 'user_name', 'first_name',)}),
+        ('Permission', {'fields': ('is_staff', 'is_active')}),
+        ('Personal', {'fields': ('about',)}),
+    )
 ```

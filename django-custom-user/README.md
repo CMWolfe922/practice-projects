@@ -300,3 +300,18 @@ admin.site.register(NewUser)
 ```
 
 > that is what needs to be done with each model that you want to be able to control from the admin page in the server.
+
+<hr>
+
+> Now I can also create a class in the `admin.py` file and control the admin layout and how the user model is viewed and displayed:
+
+```python
+class UserAdminConfig(UserAdmin):
+    # create a search facility by adding search fields
+    search_fields = ('email', 'user_name', 'first_name',)
+    # Then we can add a way to filter by staff active, firstname, etc..
+    list_filter = ('email', 'user_name' ,'first_name', 'is_active', 'is_staff',)
+    ordering = ('-start_date',)
+    # create a list display as well:
+    list_display = ('email', 'user_name', 'first_name', 'is_active', 'is_staff',)
+```

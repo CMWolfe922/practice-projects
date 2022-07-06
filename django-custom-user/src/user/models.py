@@ -63,7 +63,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
 
     # setting the first parameter
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['user_name']
+    REQUIRED_FIELDS = ['user_name', 'first_name']
 
     # Now create a dunder method for __str__ to print the new users username
     def __str__(self):

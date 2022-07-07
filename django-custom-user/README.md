@@ -321,3 +321,12 @@ class UserAdminConfig(UserAdmin):
         ('Personal', {'fields': ('about',)}),
     )
 ```
+
+===
+
+## WORKING WITH COVERAGE:
+---
+
+> first you have to pip install coverage
+
+- this module/package helps with testing. It creates a folder that points out all the area you need to cover testing.
